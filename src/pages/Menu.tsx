@@ -68,47 +68,47 @@ function Menu() {
   };
 
   const formatOrderMessage = () => {
-    const items = cart.map(item => 
-      `\n🥟 ${item.quantity}x ${item.name}\n💵 R$ ${(item.price * item.quantity).toFixed(2)}`
-    ).join('');
+  const items = cart.map(item => 
+    `\n🥟 ${item.quantity}x ${item.name}\n💵 R$ ${(item.price * item.quantity).toFixed(2)}`
+  ).join('');
 
-    const change = formData.paymentMethod === 'cash' && formData.changeFor
-      ? `\n💵 *Troco para:* R$ ${formData.changeFor.toFixed(2)}`
-      : '';
+  const change = formData.paymentMethod === 'cash' && formData.changeFor
+    ? `\n💵 *Troco para:* R$ ${formData.changeFor.toFixed(2)}`
+    : '';
 
-    const paymentMethodTranslations = {
-      'pix': 'PIX',
-      'cash': 'Dinheiro',
-      'credit': 'Cartão de Crédito',
-      'debit': 'Cartão de Débito'
-    };
-
-    const paymentEmoji = {
-      'pix': '💠',
-      'cash': '💵',
-      'credit': '💳',
-      'debit': '💳'
-    }[formData.paymentMethod];
-
-    return encodeURIComponent(
-      `🏪 *NOVO PEDIDO - PASTELARIA DO ZÉ* 🏪\n\n` +
-      `📝 *RESUMO DO PEDIDO*${items}\n\n` +
-      `💰 *Total a pagar:* R$ ${total.toFixed(2)}\n` +
-      `━━━━━━━━━━━━━━━\n\n` +
-      `👤 *DADOS DO CLIENTE*\n` +
-      `*Nome:* ${formData.name}\n\n` +
-      `📍 *ENDEREÇO DE ENTREGA*\n` +
-      `*Rua:* ${formData.street}\n` +
-      `*Bairro:* ${formData.neighborhood}\n` +
-      `*Cidade:* ${formData.city}\n` +
-      `*CEP:* ${formData.zipCode}\n` +
-      `${formData.complement ? `*Complemento:* ${formData.complement}\n` : ''}` +
-      `${formData.notes ? `\n📝 *OBSERVAÇÕES*\n${formData.notes}\n` : ''}\n` +
-      `━━━━━━━━━━━━━━━\n\n` +
-      `${paymentEmoji} *PAGAMENTO*\n` +
-      `*Forma de pagamento:* ${paymentMethodTranslations[formData.paymentMethod]}${change}`
-    );
+  const paymentMethodTranslations = {
+    'pix': 'PIX',
+    'cash': 'Dinheiro',
+    'credit': 'Cartão de Crédito',
+    'debit': 'Cartão de Débito'
   };
+
+  const paymentEmoji = {
+    'pix': '💠',
+    'cash': '💵',
+    'credit': '💳',
+    'debit': '💳'
+  }[formData.paymentMethod];
+
+  return encodeURIComponent(
+    `🏪 *NOVO PEDIDO - PASTELARIA DO ZÉ* 🏪\n\n` +
+    `📝 *RESUMO DO PEDIDO*${items}\n\n` +
+    `💰 *Total a pagar:* R$ ${total.toFixed(2)}\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
+    `👤 *DADOS DO CLIENTE*\n` +
+    `*Nome:* ${formData.name}\n\n` +
+    `📍 *ENDEREÇO DE ENTREGA*\n` +
+    `*Rua:* ${formData.street}\n` +
+    `*Bairro:* ${formData.neighborhood}\n` +
+    `*Cidade:* ${formData.city}\n` +
+    `*CEP:* ${formData.zipCode}\n` +
+    `${formData.complement ? `*Complemento:* ${formData.complement}\n` : ''}` +
+    `${formData.notes ? `\n📝 *OBSERVAÇÕES*\n${formData.notes}\n` : ''}\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
+    `${paymentEmoji} *PAGAMENTO*\n` +
+    `*Forma de pagamento:* ${paymentMethodTranslations[formData.paymentMethod]}${change}`
+  );
+};
 
   const handleSendOrder = () => {
     try {
